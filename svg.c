@@ -28,7 +28,39 @@ svg_load(FILE *fp, const char *path)
         svg_image = NULL;
     }
 
-    svg_image = nsvgParseFromFile(path, "px", 96);
+    if (fseek(fp, 0, SEEK_END) < 0) {
+        LOG_ERRNO("%s: failed to seek to end of file", path);
+        return false;
+    }
+
+    long int image_size = ftell(fp);
+
+    if (fseek(fp, 0, SEEK_SET) < 0) {
+        LOG_ERRNO("%s: failed to seek to beginning of file", path);
+        return false;
+    }
+
+    /*
+     * nanosvg requires input to be NULL terminated, so can't mmap
+     * file directly :(
+     */
+    char *image_data = mmap(NULL, image_size + 1, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (image_data == MAP_FAILED) {
+        LOG_ERRNO("%s: failed to allocate image buffer", path);
+        return false;
+    }
+
+    clearerr(fp);
+    if (fread(image_data, 1, image_size, fp) != image_size) {
+        LOG_ERRNO_P("%s: failed to read", ferror(fp), path);
+        munmap(image_data, image_size + 1);
+        return false;
+    }
+
+    image_data[image_size] = '\0';
+
+    svg_image = nsvgParse(image_data, "px", 96);
+    munmap(image_data, image_size + 1);
 
     if (svg_image == NULL)
         return false;
