@@ -507,7 +507,6 @@ main(int argc, char *const *argv)
     image_path = argv[argc - 1];
     stretch = (argc == 3);
 
-    setlocale(LC_CTYPE, "");
     log_init(LOG_COLORIZE_AUTO, false, LOG_FACILITY_DAEMON, LOG_CLASS_WARNING);
 
     LOG_INFO("%s", WBG_VERSION);
