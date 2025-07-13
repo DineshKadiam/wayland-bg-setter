@@ -27,6 +27,8 @@
 ### Changed
 
 * "Centered maximized" is the default method now ([#13][13])
+* Decreased run-time memory usage, by unloading image data after
+  rendering.
 
 
 ### Deprecated
