@@ -1,11 +1,12 @@
 # Changelog
 
-* [Unreleased](#unreleased)
-* [1.2.0](#1-2-)
+* [1.3.0](#1-3-0)
+* [1.2.0](#1-2-0)
 * [1.1.0](#1-1-0)
 
 
-## Unreleased
+## 1.3.0
+
 ### Added
 
 * Nanosvg updated to ea6a6aca009422bba0dbad4c80df6e6ba0c82183
@@ -31,10 +32,6 @@
   rendering.
 
 
-### Deprecated
-### Removed
-
-
 ### Fixed
 
 * Alpha not being applied correctly to PNG images.
@@ -42,10 +39,12 @@
 
 [11]: https://codeberg.org/dnkl/wbg/issues/11
 
-### Security
+
 ### Contributors
 
 * Leonardo Hernández Hernández
+* emrakyz
+* Sertonix
 
 
 ## 1.2.0
