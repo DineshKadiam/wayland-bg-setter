@@ -1,3 +1,5 @@
+> Originally developed at [codeberg.org/dnkl/wbg](https://codeberg.org/dnkl/wbg) · MIT
+
 # Wbg
 
 Super simple wallpaper application for Wayland compositors
